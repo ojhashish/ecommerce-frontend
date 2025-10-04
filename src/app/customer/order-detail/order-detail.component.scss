@@ -1,0 +1,45 @@
+.order-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.order-items {
+  margin: 20px 0;
+
+  .order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .item-info {
+      strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      p {
+        color: #666;
+        margin: 0;
+      }
+    }
+
+    .item-total {
+      font-size: 18px;
+      font-weight: 600;
+      color: #667eea;
+    }
+  }
+}
+
+.order-total {
+  text-align: right;
+  padding-top: 20px;
+  border-top: 2px solid #ddd;
+}

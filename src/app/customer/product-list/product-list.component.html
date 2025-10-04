@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<div class="product-list-container">
+  <div class="filters-section">
+    <h1>Shop Products</h1>
+    
+    <div class="filters">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search products</mat-label>
+        <input matInput [(ngModel)]="searchTerm" (keyup.enter)="onSearch()" placeholder="Search by name...">
+        <button mat-icon-button matSuffix (click)="onSearch()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="category-field">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="selectedCategory" (selectionChange)="onCategoryChange()">
+          <mat-option [value]="null">All Categories</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="products-grid" *ngIf="!loading">
+    <mat-card *ngFor="let product of products" class="product-card">
+      <img mat-card-image [src]="product.imageUrl || 'assets/placeholder.png'" 
+           [alt]="product.name" class="product-image">
+      
+      <mat-card-header>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle *ngIf="product.category">
+          {{ product.category.name }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p class="description">{{ product.description || 'No description available' }}</p>
+        <div class="product-info">
+          <span class="price">${{ product.price.toFixed(2) }}</span>
+          <span class="stock" [class.out-of-stock]="product.stock === 0">
+            {{ product.stock > 0 ? 'In Stock (' + product.stock + ')' : 'Out of Stock' }}
+          </span>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" 
+                [disabled]="product.stock === 0"
+                (click)="addToCart(product)">
+          <mat-icon>add_shopping_cart</mat-icon>
+          Add to Cart
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div *ngIf="products.length === 0" class="no-products">
+      <mat-icon>inventory_2</mat-icon>
+      <p>No products found</p>
+    </div>
+  </div>
+</div>

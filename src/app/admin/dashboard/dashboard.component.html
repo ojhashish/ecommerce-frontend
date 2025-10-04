@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+<div class="page-container">
+  <h1>Admin Dashboard</h1>
+
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading" class="dashboard-grid">
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <mat-icon color="primary">attach_money</mat-icon>
+        <h2>${{ stats.totalRevenue || 0 }}</h2>
+        <p>Total Revenue</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <mat-icon color="accent">shopping_cart</mat-icon>
+        <h2>{{ stats.totalOrders || 0 }}</h2>
+        <p>Total Orders</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <mat-icon color="warn">inventory</mat-icon>
+        <h2>{{ stats.totalProducts || 0 }}</h2>
+        <p>Products</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <mat-icon color="primary">people</mat-icon>
+        <h2>{{ stats.totalCustomers || 0 }}</h2>
+        <p>Customers</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

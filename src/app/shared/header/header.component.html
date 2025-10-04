@@ -1,0 +1,64 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <div class="toolbar-content">
+    <div class="logo-section">
+      <button mat-button routerLink="/" class="logo-btn">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="logo-text">E-Commerce Portal</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <ng-container *ngIf="user">
+        <ng-container *ngIf="!isAdmin">
+          <button mat-button routerLink="/products">
+            <mat-icon>store</mat-icon>
+            Products
+          </button>
+          <button mat-button routerLink="/cart">
+            <mat-icon matBadge="0" matBadgeColor="accent">shopping_basket</mat-icon>
+            Cart
+          </button>
+          <button mat-button routerLink="/orders">
+            <mat-icon>receipt</mat-icon>
+            My Orders
+          </button>
+        </ng-container>
+
+        <ng-container *ngIf="isAdmin">
+          <button mat-button routerLink="/admin/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            Dashboard
+          </button>
+          <button mat-button routerLink="/admin/products">
+            <mat-icon>inventory</mat-icon>
+            Products
+          </button>
+          <button mat-button routerLink="/admin/categories">
+            <mat-icon>category</mat-icon>
+            Categories
+          </button>
+          <button mat-button routerLink="/admin/orders">
+            <mat-icon>list_alt</mat-icon>
+            Orders
+          </button>
+        </ng-container>
+
+        <button mat-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>account_circle</mat-icon>
+          {{ user.username }}
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Logout
+          </button>
+        </mat-menu>
+      </ng-container>
+
+      <ng-container *ngIf="!user">
+        <button mat-button routerLink="/login">Login</button>
+        <button mat-raised-button color="accent" routerLink="/register">Register</button>
+      </ng-container>
+    </div>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,35 @@
+.cart-card {
+  margin: 20px 0;
+}
+
+.cart-table {
+  width: 100%;
+}
+
+.cart-summary {
+  padding: 20px;
+  text-align: right;
+  border-top: 1px solid #ddd;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 60px 20px;
+  
+  mat-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: #999;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #666;
+    margin: 20px 0;
+  }
+}

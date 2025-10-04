@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<div class="page-container">
+  <h1>Order Details</h1>
+
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!loading && order">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Order #{{ order.id }}</mat-card-title>
+        <mat-card-subtitle>{{ order.createdAt | date:'medium' }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="order-status">
+          <strong>Status:</strong>
+          <mat-chip-set>
+            <mat-chip [highlighted]="true">{{ order.status }}</mat-chip>
+          </mat-chip-set>
+        </div>
+
+        <h3>Items</h3>
+        <div class="order-items">
+          <div *ngFor="let item of order.items" class="order-item">
+            <div class="item-info">
+              <strong>{{ item.product?.name }}</strong>
+              <p>Quantity: {{ item.quantity }} × ${{ item.price }}</p>
+            </div>
+            <div class="item-total">
+              ${{ (item.quantity * item.price).toFixed(2) }}
+            </div>
+          </div>
+        </div>
+
+        <div class="order-total">
+          <h2>Total: ${{ order.total_amount.toFixed(2) }}</h2>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
