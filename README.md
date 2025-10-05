@@ -94,7 +94,7 @@ src/
 ### Prerequisites
 - Node.js 18+ and npm
 - Angular CLI 20.2+
-- Backend server running on http://localhost:3000
+- Backend server running on https://ecombizforproj.info
 
 ### Setup
 
